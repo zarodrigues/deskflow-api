@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using DeskFlow.API.Repositories;
 using DeskFlow.API.Services;
 using System.Text.Json.Serialization;
+using DeskFlow.API.Middlewares;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +27,8 @@ builder.Services.AddScoped<IChamadoService, ChamadoService>();
 
 
 var app = builder.Build();
+
+   app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

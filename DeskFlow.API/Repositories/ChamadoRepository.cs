@@ -49,4 +49,14 @@ public class ChamadoRepository : IChamadoRepository
         _context.Entry(chamado).State = EntityState.Modified;
         await _context.SaveChangesAsync();
     }
+
+    public async Task<Interacao> AdicionarInteracaoAsync(Interacao interacao)
+    
+        {
+        _context.Interacoes.Add(interacao);
+        await _context.SaveChangesAsync();
+        return interacao;
+    }
+
+
 }

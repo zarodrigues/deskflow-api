@@ -124,5 +124,39 @@ public class ChamadoService : IChamadoService
 
     }
 
+    public async Task<InteracaoDto> AdicionarInteracaoAsync(int chamadoId, InteracaoCriarDto dto)
+{
+    var chamado = await _chamadoRepository.BuscarPorIdAsync(chamadoId);
+
+    if (chamado == null)
+        throw new NaoEncontradoException($"Chamado {chamadoId} não encontrado.");
+
+    if (chamado.Status == StatusChamado.Fechado)
+        throw new RegraNegocioException("Não é possível adicionar interações a um chamado fechado.");
+
+    if (string.IsNullOrWhiteSpace(dto.Autor))
+        throw new RegraNegocioException("O autor é obrigatório.");
+
+    if (string.IsNullOrWhiteSpace(dto.Mensagem))
+        throw new RegraNegocioException("A mensagem é obrigatória.");
+
+    var interacao = new Interacao
+    {
+        ChamadoId = chamadoId,
+        Autor = dto.Autor.Trim(),
+        Mensagem = dto.Mensagem.Trim(),
+        DataRegistro = DateTime.Now
+    };
+
+    await _chamadoRepository.AdicionarInteracaoAsync(interacao);
+
+    return new InteracaoDto
+    {
+        Id = interacao.Id,
+        Autor = interacao.Autor,
+        Mensagem = interacao.Mensagem,
+        DataRegistro = interacao.DataRegistro
+    };
+}
 
 }

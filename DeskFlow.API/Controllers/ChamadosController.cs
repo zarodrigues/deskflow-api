@@ -58,4 +58,11 @@ public class ChamadosController : ControllerBase
         return NoContent();
     }
 
+    [HttpPost("{id}/interacoes")]
+    public async Task<IActionResult> AdicionarInteracao(int id, InteracaoCriarDto dto)
+    {
+        var interacao = await _service.AdicionarInteracaoAsync(id, dto);
+        return CreatedAtAction(nameof(BuscarPorId), new { id }, interacao);
+    }
+
 }

@@ -10,4 +10,5 @@ public interface IChamadoService
     Task<ChamadoDto> AbrirAsync(ChamadoCriarDto dto);
     Task IniciarAsync(int id);
     Task EncerrarAsync(int id, ChamadoEncerrarDto dto);
+    Task<InteracaoDto> AdicionarInteracaoAsync(int chamadoId, InteracaoCriarDto dto);
 }

@@ -8,5 +8,5 @@ public interface IChamadoRepository
     Task<Chamado?> BuscarPorIdAsync(int id);
     Task<Chamado> AdicionarAsync(Chamado chamado);
     Task AtualizarAsync(Chamado chamado);
-
+    Task<Interacao> AdicionarInteracaoAsync(Interacao interacao);
 }

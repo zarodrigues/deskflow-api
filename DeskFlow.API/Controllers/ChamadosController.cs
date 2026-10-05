@@ -39,4 +39,23 @@ public class ChamadosController : ControllerBase
         var criado = await _service.AbrirAsync(dto);
         return CreatedAtAction(nameof(BuscarPorId), new { id = criado.Id }, criado);
     }
+
+    [HttpPost("{id}/iniciar")]
+
+    public async Task<IActionResult> Iniciar(int id)
+
+    {
+        await _service.IniciarAsync(id);
+        return NoContent();
+    }
+
+    [HttpPost("{id}/encerrar")]
+
+    public async Task<IActionResult> Encerrar(int id, ChamadoEncerrarDto dto)
+
+    {
+        await _service.EncerrarAsync(id, dto);
+        return NoContent();
+    }
+
 }

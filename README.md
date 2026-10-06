@@ -1,4 +1,4 @@
-# 🎧 DeskFlow API — Gestão de Chamados e Helpdesk de TI
+# DeskFlow API — Gestão de Chamados e Helpdesk de TI
 
 ## 🎯 Sobre o Projeto
 
